@@ -45,4 +45,15 @@ public class Task {
     public void setFinished(boolean finished) {
         isFinished = finished;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isFinished=" + isFinished +
+                '}';
+    }
 }
