@@ -1,28 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Aplikacja ToDo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+    <style>
+
+        .task-finished{
+            font-size: 20px;
+            color:lawngreen;
+            text-align: center;
+        }
+        .task-unfinished{
+            color:red;
+            font-size: 20px;
+
+            position: center;
+        }
+    </style>
+
+
 </head>
 <body>
 
-<h1>Lista zadań:</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="row">
+            <a class="navbar-brand" href="/">To do</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/tasks">Wszystkie <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/finished">Skończone</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/unfinished">Nieskończone</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<!--
-    th:each odpowiednich foreach
-    dla thymeleaf, html
-    for ( task: tasks){
-
-    }
--->
-
-<ul th:each="task: ${tasks}">
-<li th:text="${task}">
-
-</li>
+<div class="container">
+    <div class="row">
 
 
-</ul>
+        <div class="container">
+            <div class="row">
+                <h1>Lista zadań:</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <table class="table">
+                    <thead align="center">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Is finished?</th>
+                    </tr>
+                    </thead>
+                    <tbody align="center">
+                    <tr th:each="task: ${tasks}">
+                        <td th:text="${task.name}"></td>
+                        <td th:text="${task.description}"></td>
+
+                        <td>
+                            <span th:if="${task.finished}" class="task-finished"><i class="far fa-smile"></i></span>
+
+                            <span th:if="${!task.finished}" class="task-unfinished"><i class="far fa-angry"></i></span>
+                        </td>
+                    </tr>
+
+                    <!--<li th:text="${task.finished}"></li>-->
+
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+
+
+        <!--th:each odpowiednich foreach
+            dla thymeleaf, html
+            for ( task: tasks){
+            }  -->
+
+
+        <!--<ul th:each="task: ${tasks}">-->
+        <!--<li th:text="${task}">-->
+        <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+    <button type="submit" class="btn btn-primary" value="Wstecz" onClick="history.back();">Wstecz</button>
+
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
 
 </body>
 </html>
